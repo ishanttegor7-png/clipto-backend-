@@ -1,0 +1,6 @@
+{
+  "name": "Clipto",
+  "description": "Turn YouTube videos into sequential 1-minute clips or custom short clips with instant MP4 downloads.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile, subscription status, and daily clipping quotas",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Unique Firebase Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User account email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL"
+        },
+        "plan": {
+          "type": "string",
+          "enum": ["free", "premium"],
+          "description": "Active subscription plan"
+        },
+        "subscriptionExpiry": {
+          "type": "string",
+          "description": "ISO timestamp when premium subscription expires, or null"
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "enum": ["none", "active", "expired"],
+          "description": "Status of the subscription"
+        },
+        "autoClipsUsedToday": {
+          "type": "number",
+          "description": "Number of auto clips generated today"
+        },
+        "customClipsUsedToday": {
+          "type": "number",
+          "description": "Number of custom clips generated today"
+        },
+        "usageResetDate": {
+          "type": "string",
+          "description": "Date string (YYYY-MM-DD) for daily usage tracking"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when account was registered"
+        }
+      },
+      "required": [
+        "userId",
+        "email",
+        "plan",
+        "autoClipsUsedToday",
+        "customClipsUsedToday",
+        "usageResetDate",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
+      },
+      "description": "Stores user account details, subscription tier, and daily usage quotas."
+    }
+  }
+}
